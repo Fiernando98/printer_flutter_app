@@ -10,4 +10,4 @@ Newest version of Flutter and Dart (master channel)
 - flutter clean
 - flutter pub get
 - flutter pub upgrade
-- flutter run
+- flutter run OR flutter run --release
