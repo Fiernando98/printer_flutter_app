@@ -1,16 +1,13 @@
 # printer_flutter_example
 
-A new Flutter project.
+This app is a example with printer sdk using Channels
 
-## Getting Started
+## REQUIREMENTS
 
-This project is a starting point for a Flutter application.
+Newest version of Flutter and Dart (master channel)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## HOW TO RUN
+$flutter clean
+$flutter pub get
+$flutter pub upgrade
+$flutter run
