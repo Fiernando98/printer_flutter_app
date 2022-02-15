@@ -13,7 +13,9 @@ import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugins.GeneratedPluginRegistrant
 import kotlin.concurrent.thread
+
 
 class MainActivity : FlutterActivity() {
     private val appChannel = "flerma.flutter.printer_flutter_example/kotlin"
@@ -28,6 +30,11 @@ class MainActivity : FlutterActivity() {
         if (mPrinterManager != null) {
             mPrinterManager!!.close()
         }
+    }
+
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +60,9 @@ class MainActivity : FlutterActivity() {
             }
             Looper.loop()
         }
-    }
 
-    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
-        super.configureFlutterEngine(flutterEngine)
         MethodChannel(
-            flutterEngine.dartExecutor.binaryMessenger,
+            flutterEngine!!.dartExecutor.binaryMessenger,
             appChannel
         ).setMethodCallHandler { call, result ->
             when (call.method) {
