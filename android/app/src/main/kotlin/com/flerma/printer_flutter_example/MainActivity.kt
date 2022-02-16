@@ -39,7 +39,7 @@ class MainActivity : FlutterActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        thread(start = true) {
+        /*thread(start = true) {
             Looper.prepare()
             mPrintHandler = object : Handler() {
                 override fun handleMessage(msg: Message) {
@@ -59,7 +59,7 @@ class MainActivity : FlutterActivity() {
                 }
             }
             Looper.loop()
-        }
+        }*/
 
         MethodChannel(
             flutterEngine!!.dartExecutor.binaryMessenger,
@@ -103,15 +103,22 @@ class MainActivity : FlutterActivity() {
     }
 
     private fun printTextPrinter(text: String) {
-        val msg = mPrintHandler!!.obtainMessage(PrinterPrintCode.TEXT.ordinal)
-        msg.obj = text
-        msg.sendToTarget()
+        doPrint(
+            getPrinterManager()!!,
+            PrinterPrintCode.TEXT.ordinal,
+            text
+        )
     }
 
     private fun printPicturePrinter(bitmap: Bitmap) {
-        val msg = mPrintHandler!!.obtainMessage(PrinterPrintCode.BITMAP.ordinal)
+        doPrint(
+            getPrinterManager()!!,
+            PrinterPrintCode.BITMAP.ordinal,
+            bitmap
+        )
+        /*val msg = mPrintHandler!!.obtainMessage(PrinterPrintCode.BITMAP.ordinal)
         msg.obj = bitmap
-        msg.sendToTarget()
+        msg.sendToTarget()*/
     }
 
     private fun forwardPrinter() {
